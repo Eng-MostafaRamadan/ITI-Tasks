@@ -6,6 +6,8 @@ void main() {
       print("Fizz"); // Divisible by 3
     } else if (i % 5 == 0) {
       print("Buzz"); // Divisible by 5
+    } else {
+      print(i);
     }
   }
 }

@@ -58,6 +58,47 @@ class MyApp extends StatelessWidget {
                   Icon(Icons.link),
                 ],
               ),
+              SizedBox(height: 75),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          image: DecorationImage(
+                            image: AssetImage("assets/logo1.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text("1.3K Followers"),
+                    ],
+                  ),
+                  SizedBox(width: 75),
+                  Column(
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          image: DecorationImage(
+                            image: AssetImage("assets/logo2.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text("1.3K Followers"),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:day2_task/container.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,17 +29,8 @@ class MyApp extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 50),
-              Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  image: DecorationImage(
-                    image: AssetImage("assets/myPhoto.jpg"),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
+              ContainerImage(
+                  image: "assets/myPhoto.jpg", width: 100, height: 100),
               SizedBox(height: 20),
               Text("Mostafa Ramadan"),
               SizedBox(height: 10),
@@ -64,17 +56,8 @@ class MyApp extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: DecorationImage(
-                            image: AssetImage("assets/logo1.png"),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
+                      ContainerImage(
+                          image: "assets/logo1.png", width: 50, height: 50),
                       SizedBox(height: 5),
                       Text("1.3K Followers"),
                     ],
@@ -82,17 +65,8 @@ class MyApp extends StatelessWidget {
                   SizedBox(width: 75),
                   Column(
                     children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: DecorationImage(
-                            image: AssetImage("assets/logo2.png"),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
+                      ContainerImage(
+                          image: "assets/logo2.png", width: 50, height: 50),
                       SizedBox(height: 5),
                       Text("1.3K Followers"),
                     ],

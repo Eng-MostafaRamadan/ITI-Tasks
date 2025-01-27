@@ -12,13 +12,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Color(0xffFCF6F5),
         appBar: AppBar(
-          backgroundColor: Colors.grey,
-          leading: Icon(Icons.arrow_back),
-          title: Text("My Profile"),
+          backgroundColor: const Color(0xff990011),
+          leading: Icon(
+            Icons.arrow_back,
+            color: Color(0xffFCF6F5),
+          ),
+          title: Text(
+            "My Profile",
+            style: TextStyle(color: Color(0xffFCF6F5)),
+          ),
         ),
-        body: Column(
-          children: [],
+        body: Center(
+          child: Column(
+            children: [],
+          ),
         ),
       ),
     );

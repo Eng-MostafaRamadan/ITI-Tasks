@@ -26,7 +26,39 @@ class MyApp extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            children: [],
+            children: [
+              SizedBox(height: 50),
+              Container(
+                height: 100,
+                width: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  image: DecorationImage(
+                    image: AssetImage("assets/myPhoto.jpg"),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Text("Mostafa Ramadan"),
+              SizedBox(height: 10),
+              Text("SOFTWARE DEVELOPER"),
+              SizedBox(height: 10),
+              Text("Create great Projects"),
+              SizedBox(height: 10),
+              Text("@TwWorks"),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.alternate_email_sharp),
+                  SizedBox(width: 10),
+                  Icon(Icons.email_outlined),
+                  SizedBox(width: 10),
+                  Icon(Icons.link),
+                ],
+              ),
+            ],
           ),
         ),
       ),

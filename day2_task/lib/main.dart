@@ -28,17 +28,33 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              SizedBox(height: 100),
               ContainerImage(
                   image: "assets/myPhoto.jpg", width: 100, height: 100),
               SizedBox(height: 20),
-              Text("Mostafa Ramadan"),
+              Text(
+                "Mostafa Ramadan",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
               SizedBox(height: 10),
               Text("SOFTWARE DEVELOPER"),
               SizedBox(height: 10),
-              Text("Create great Projects"),
+              Text(
+                "Create Great Projects",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               SizedBox(height: 10),
-              Text("@TwWorks"),
+              Text(
+                "@TwWorks",
+                style: TextStyle(
+                  color: const Color.fromARGB(255, 43, 87, 161),
+                ),
+              ),
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

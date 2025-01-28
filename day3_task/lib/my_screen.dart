@@ -1,3 +1,4 @@
+import 'package:day3_task/final_score.dart';
 import 'package:day3_task/models/questionsclass.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,14 @@ class _MainScreenState extends State<MainScreen> {
   int currentQuestionIndex = 0;
   int correctAnswer = 0;
   List<Widget> answerIcons = [];
+
+  void resetQuiz() {
+    setState(() {
+      currentQuestionIndex = 0;
+      correctAnswer = 0;
+      answerIcons.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +58,6 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          // Icons row based on the value of `istrue`
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: answerIcons,
@@ -62,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
           const SizedBox(height: 10),
           Text(
             questions[currentQuestionIndex].text,
-            style: const TextStyle(fontSize: 18),
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 20),
           Row(
@@ -74,22 +82,31 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 onPressed: () {
                   setState(() {
-                    if (questions[currentQuestionIndex].answer == true) {
-                      answerIcons.add(Icon(
-                        Icons.check_rounded,
-                        color: Colors.green,
-                        size: 30,
-                      ));
-                      correctAnswer++;
-                    } else {
-                      answerIcons.add(Icon(
-                        Icons.close_rounded,
-                        color: Colors.red,
-                        size: 30,
-                      ));
-                    }
-                    if (currentQuestionIndex < questions.length - 1) {
-                      currentQuestionIndex++;
+                    if (currentQuestionIndex < questions.length) {
+                      if (questions[currentQuestionIndex].answer == true) {
+                        if (answerIcons.length < questions.length) {
+                          answerIcons.add(const Icon(
+                            Icons.check_rounded,
+                            color: Colors.green,
+                            size: 30,
+                          ));
+                          correctAnswer = correctAnswer < questions.length
+                              ? correctAnswer + 1
+                              : correctAnswer;
+                        }
+                      } else {
+                        if (answerIcons.length < questions.length) {
+                          answerIcons.add(const Icon(
+                            Icons.close_rounded,
+                            color: Colors.red,
+                            size: 30,
+                          ));
+                        }
+                      }
+
+                      if (currentQuestionIndex < questions.length - 1) {
+                        currentQuestionIndex++;
+                      }
                     }
                   });
                 },
@@ -105,22 +122,31 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 onPressed: () {
                   setState(() {
-                    if (questions[currentQuestionIndex].answer == false) {
-                      answerIcons.add(const Icon(
-                        Icons.check_rounded,
-                        color: Colors.green,
-                        size: 30,
-                      ));
-                      correctAnswer++;
-                    } else {
-                      answerIcons.add(const Icon(
-                        Icons.close_rounded,
-                        color: Colors.red,
-                        size: 30,
-                      ));
-                    }
-                    if (currentQuestionIndex < questions.length - 1) {
-                      currentQuestionIndex++;
+                    if (currentQuestionIndex < questions.length) {
+                      if (questions[currentQuestionIndex].answer == false) {
+                        if (answerIcons.length < questions.length) {
+                          answerIcons.add(const Icon(
+                            Icons.check_rounded,
+                            color: Colors.green,
+                            size: 30,
+                          ));
+                          correctAnswer = correctAnswer < questions.length
+                              ? correctAnswer + 1
+                              : correctAnswer;
+                        }
+                      } else {
+                        if (answerIcons.length < questions.length) {
+                          answerIcons.add(const Icon(
+                            Icons.close_rounded,
+                            color: Colors.red,
+                            size: 30,
+                          ));
+                        }
+                      }
+
+                      if (currentQuestionIndex < questions.length - 1) {
+                        currentQuestionIndex++;
+                      }
                     }
                   });
                 },
@@ -131,12 +157,35 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ],
           ),
-          Text(
-            "Your Score is $correctAnswer",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-              color: Colors.red,
+          SizedBox(height: 20),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  WidgetStateProperty.all(Color.fromARGB(255, 237, 202, 142)),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FinalScore(
+                            correctAnswer: correctAnswer,
+                          )));
+            },
+            child: Text(
+              "Final Result",
+              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(
+                  const Color.fromARGB(255, 171, 48, 48)),
+            ),
+            onPressed: resetQuiz,
+            child: const Text(
+              "Reset Quiz",
+              style: TextStyle(color: Colors.white),
             ),
           ),
         ],

@@ -11,6 +11,24 @@ class FinalScore extends StatefulWidget {
 
 class _FinalScoreState extends State<FinalScore> {
   List<Widget> answerIcons = [];
+  String resultMessage = '';
+
+  void result(int correctAnswer) {
+    if (correctAnswer == 7) {
+      resultMessage = "You are Excellent";
+    } else if (correctAnswer > 3 || correctAnswer > 7) {
+      resultMessage = "Good job, keep improving!";
+    } else {
+      resultMessage = "You will do better next time :)";
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    result(widget.correctAnswer);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,24 +51,20 @@ class _FinalScoreState extends State<FinalScore> {
             width: double.infinity,
           ),
           Text(
-            "Number of Questions: 7",
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: answerIcons,
-          ),
-          const SizedBox(height: 20),
-          Text(
             "Your Score is ${widget.correctAnswer}",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
               color: Colors.red,
+            ),
+          ),
+          SizedBox(height: 20),
+          Text(
+            resultMessage,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+              color: Colors.green,
             ),
           ),
         ],

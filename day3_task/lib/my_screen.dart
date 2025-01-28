@@ -19,7 +19,8 @@ class _MainScreenState extends State<MainScreen> {
     Questions(text: "Is the moon a planet?", answer: false, id: 6),
   ];
   int currentQuestionIndex = 0;
-  bool? istrue; // Tracks whether the user answered Yes or No
+  int correctAnswer = 0;
+  List<Widget> answerIcons = [];
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +52,7 @@ class _MainScreenState extends State<MainScreen> {
           // Icons row based on the value of `istrue`
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (istrue != null &&
-                  istrue == questions[currentQuestionIndex].answer)
-                const Icon(Icons.check_rounded, color: Colors.green, size: 30),
-              if (istrue != null &&
-                  istrue != questions[currentQuestionIndex].answer)
-                const Icon(Icons.close_rounded, color: Colors.red, size: 30),
-            ],
+            children: answerIcons,
           ),
           const SizedBox(height: 20),
           Text(
@@ -80,7 +74,20 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 onPressed: () {
                   setState(() {
-                    istrue = true; // User selected "Yes"
+                    if (questions[currentQuestionIndex].answer == true) {
+                      answerIcons.add(Icon(
+                        Icons.check_rounded,
+                        color: Colors.green,
+                        size: 30,
+                      ));
+                      correctAnswer++;
+                    } else {
+                      answerIcons.add(Icon(
+                        Icons.close_rounded,
+                        color: Colors.red,
+                        size: 30,
+                      ));
+                    }
                     if (currentQuestionIndex < questions.length - 1) {
                       currentQuestionIndex++;
                     }
@@ -98,7 +105,20 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 onPressed: () {
                   setState(() {
-                    istrue = false; // User selected "No"
+                    if (questions[currentQuestionIndex].answer == false) {
+                      answerIcons.add(const Icon(
+                        Icons.check_rounded,
+                        color: Colors.green,
+                        size: 30,
+                      ));
+                      correctAnswer++;
+                    } else {
+                      answerIcons.add(const Icon(
+                        Icons.close_rounded,
+                        color: Colors.red,
+                        size: 30,
+                      ));
+                    }
                     if (currentQuestionIndex < questions.length - 1) {
                       currentQuestionIndex++;
                     }
@@ -110,6 +130,14 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ],
+          ),
+          Text(
+            "Your Score is $correctAnswer",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              color: Colors.red,
+            ),
           ),
         ],
       ),

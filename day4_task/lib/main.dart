@@ -1,4 +1,9 @@
 import 'package:day4_task/mainscreen.dart';
+import 'package:day4_task/screens/burger.dart';
+import 'package:day4_task/screens/cheesepizza.dart';
+import 'package:day4_task/screens/fries.dart';
+import 'package:day4_task/screens/noodles.dart';
+import 'package:day4_task/screens/vegetablespizza.dart';
 import 'package:day4_task/welcomescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +21,11 @@ class MyApp extends StatelessWidget {
       home: WelcomeScreen(),
       routes: {
         "MainScreen": (context) => MainScreen(),
+        "Vegetables pizza": (context) => VegetablesPizza(),
+        "Cheese pizza": (context) => CheesePizza(),
+        "Fries": (context) => Fries(),
+        "Noodles": (context) => Noodles(),
+        "Burger": (context) => Burger(),
       },
     );
   }

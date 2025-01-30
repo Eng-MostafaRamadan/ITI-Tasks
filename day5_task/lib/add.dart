@@ -77,18 +77,45 @@ class _AddScreenState extends State<AddScreen> {
                       onSaved: (newValue) => text = newValue!,
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
-                          return "This Field is Required";
+                          return "This field is required";
                         }
                         return null;
                       },
                       maxLines: 2,
                       keyboardType: TextInputType.text,
+                      style: TextStyle(fontSize: 16, color: Colors.black87),
                       decoration: InputDecoration(
                         hintText: "Enter your task...",
-                        labelText: "Type Your Text",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
+                        labelText: "Task",
+                        labelStyle: TextStyle(
+                            color: Colors.blueGrey,
+                            fontWeight: FontWeight.w500),
+                        prefixIcon:
+                            Icon(Icons.task_alt, color: Color(0xff02343F)),
+                        suffixIcon: IconButton(
+                          icon: Icon(Icons.clear, color: Colors.redAccent),
+                          onPressed: () {
+                            formKey.currentState?.reset();
+                          },
                         ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide:
+                              BorderSide(color: Color(0xff02343F), width: 1.5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: BorderSide(color: Colors.green, width: 2),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide:
+                              BorderSide(color: Colors.blueGrey, width: 1.5),
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                       ),
                     ),
                     SizedBox(height: 20),

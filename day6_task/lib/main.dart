@@ -1,23 +1,23 @@
 import 'package:day6_task/expense.dart';
-import 'package:day6_task/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "home",
+      initialRoute: 'home',
       routes: {
-        "home": (context) => HomeScreen(),
-        "expense": (context) => ExpenseScreen(),
+        'home': (context) => const HomeScreen(),
+        'expense': (context) => const ExpenseScreen(),
       },
     );
   }

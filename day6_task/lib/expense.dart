@@ -37,7 +37,14 @@ class _ExpenseScreenState extends ConsumerState<ExpenseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Expense")),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Color(0xffF2AA4C)),
+        backgroundColor: Color(0xff101820),
+        title: const Text(
+          "Add Expense",
+          style: TextStyle(color: Color(0xffF2AA4C)),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(
@@ -59,28 +66,37 @@ class _ExpenseScreenState extends ConsumerState<ExpenseScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            DropdownButtonFormField(
-              value: _selectedCategory,
-              items: _categories.map((category) {
-                return DropdownMenuItem(value: category, child: Text(category));
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedCategory = value!;
-                });
-              },
-              decoration: const InputDecoration(border: OutlineInputBorder()),
+            SizedBox(
+              width: 120,
+              height: 50,
+              child: DropdownButtonFormField(
+                value: _selectedCategory,
+                items: _categories.map((category) {
+                  return DropdownMenuItem(
+                      value: category, child: Text(category));
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedCategory = value!;
+                  });
+                },
+                decoration: const InputDecoration(border: OutlineInputBorder()),
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _addExpense,
               style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff101820),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
               ),
-              child: const Text('Add Expense'),
+              child: const Text(
+                'Add Expense',
+                style: TextStyle(color: Color(0xffF2AA4C)),
+              ),
             ),
           ],
         ),

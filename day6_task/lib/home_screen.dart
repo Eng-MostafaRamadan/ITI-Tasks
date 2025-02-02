@@ -13,12 +13,22 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff101820),
         onPressed: () {
           Navigator.of(context).pushNamed("expense");
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Color(0xffF2AA4C),
+        ),
       ),
-      appBar: AppBar(title: const Text("Expense Tracker")),
+      appBar: AppBar(
+        backgroundColor: Color(0xff101820),
+        title: const Text(
+          "Expense Tracker",
+          style: TextStyle(color: Color(0xffF2AA4C)),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -26,7 +36,7 @@ class HomeScreen extends ConsumerWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Color(0xff101820),
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
@@ -41,7 +51,7 @@ class HomeScreen extends ConsumerWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+                  color: Color(0xffF2AA4C),
                 ),
               ),
             ),

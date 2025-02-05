@@ -1,36 +1,38 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class Registerscreen extends StatefulWidget {
-  const Registerscreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<Registerscreen> createState() => _RegisterscreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _RegisterscreenState extends State<Registerscreen> {
+class _LoginScreenState extends State<LoginScreen> {
   String name = '';
   String email = '';
   String password = '';
   var key = GlobalKey<FormState>();
 
-  create() async {
+  login() async {
     try {
       if (key.currentState!.validate()) {
         key.currentState!.save();
+        print("Emeil: ${email} , Password : ${password} ");
         await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password);
-        Navigator.of(context).pushNamed('login');
+            .signInWithEmailAndPassword(email: email, password: password);
+        Navigator.of(context).pushNamedAndRemoveUntil("Event", (_) {
+          return false;
+        });
       }
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      } else {
+        print(e);
       }
-      print("err  ${e.code}");
-    } catch (e) {
-      print(" last $e");
     }
   }
 
@@ -45,7 +47,7 @@ class _RegisterscreenState extends State<Registerscreen> {
             children: [
               Center(
                 child: Text(
-                  "Join Us",
+                  "Welcome back",
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -62,28 +64,6 @@ class _RegisterscreenState extends State<Registerscreen> {
                 ),
               ),
               SizedBox(height: 50),
-              TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  label: Text("User Name"),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty || value.length < 3) {
-                    return "User Name is Required";
-                  } else {
-                    return null;
-                  }
-                },
-                onSaved: (value) {
-                  setState(() {
-                    name = value!;
-                  });
-                },
-              ),
-              SizedBox(height: 30),
               TextFormField(
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email_outlined),
@@ -144,7 +124,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                 height: 50,
               ),
               ElevatedButton(
-                onPressed: create,
+                onPressed: login,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 117, 81, 123),
                   foregroundColor: Colors.white,
@@ -155,7 +135,7 @@ class _RegisterscreenState extends State<Registerscreen> {
                   elevation: 5,
                 ),
                 child: Text(
-                  "Register",
+                  "Login",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

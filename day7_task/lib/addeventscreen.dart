@@ -19,7 +19,16 @@ class _AddEventScreenState extends State<AddEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Event"),
+        iconTheme: IconThemeData(
+          color: Color(0xFFF3E5F5),
+        ),
+        backgroundColor: Color.fromARGB(255, 60, 11, 128),
+        title: Text(
+          "Add Event",
+          style: TextStyle(
+            color: Color(0xFFF3E5F5),
+          ),
+        ),
       ),
       body: Form(
           key: key,

@@ -47,15 +47,27 @@ class _EventPlannerScreenState extends State<EventPlannerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Event Planner"),
+        backgroundColor: Color.fromARGB(255, 60, 11, 128),
+        title: Text(
+          "Event Planner",
+          style: TextStyle(
+            color: Color(0xFFF3E5F5),
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed("add");
-                },
-                icon: Icon(Icons.add_circle_outline)),
+              onPressed: () {
+                Navigator.of(context).pushNamed("add");
+              },
+              icon: Icon(Icons.add_circle_outline),
+              style: ButtonStyle(
+                iconColor: WidgetStateProperty.all(
+                  Color(0xFFF3E5F5),
+                ),
+              ),
+            ),
           )
         ],
       ),

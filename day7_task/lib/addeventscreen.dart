@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddEventScreen extends StatefulWidget {
   const AddEventScreen({super.key});
@@ -75,52 +76,71 @@ class _AddEventScreenState extends State<AddEventScreen> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        textStyle: TextStyle(fontSize: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Selected Date: ${DateFormat('dd/MM/yyyy').format(Date)}",
                         ),
-                      ),
-                      onPressed: () {
-                        showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(20)),
-                          ),
-                          context: context,
-                          builder: (context) => Container(
-                            padding: EdgeInsets.all(20),
-                            height: 300,
-                            child: Column(
-                              children: [
-                                const Text(
-                                  "Select Event Date",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 10),
-                                SizedBox(
-                                  height: 200,
-                                  child: CupertinoDatePicker(
-                                    mode: CupertinoDatePickerMode.date,
-                                    initialDateTime: Date,
-                                    onDateTimeChanged: (DateTime date) {
-                                      setState(() {
-                                        Date = date;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              ],
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 8),
+                            textStyle: TextStyle(fontSize: 14),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                        );
-                      },
-                      child: Text("Choose Date"),
+                          onPressed: () {
+                            showModalBottomSheet(
+                              isDismissible: false,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(20)),
+                              ),
+                              context: context,
+                              builder: (context) => Container(
+                                padding: EdgeInsets.all(20),
+                                height: 300,
+                                child: Column(
+                                  children: [
+                                    const Text(
+                                      "Select Event Date",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 10),
+                                    SizedBox(
+                                      height: 160,
+                                      child: CupertinoDatePicker(
+                                        mode: CupertinoDatePickerMode.date,
+                                        initialDateTime: Date,
+                                        onDateTimeChanged: (DateTime date) {
+                                          setState(() {
+                                            Date = date;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(height: 10),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Date = Date;
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("OK"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                          child: Text("Choose Date"),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 25),
                     ElevatedButton(

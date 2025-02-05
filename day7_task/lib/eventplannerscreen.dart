@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
+import 'package:intl/intl.dart';
 
 class EventPlannerScreen extends StatefulWidget {
   const EventPlannerScreen({super.key});
@@ -10,6 +11,29 @@ class EventPlannerScreen extends StatefulWidget {
 }
 
 class _EventPlannerScreenState extends State<EventPlannerScreen> {
+  //function to Handle date format
+  String formatDate(dynamic dateValue) {
+    if (dateValue == null) {
+      return "No Date"; // Handle null case
+    }
+
+    if (dateValue is Timestamp) {
+      return DateFormat.yMMMd()
+          .format(dateValue.toDate()); // Convert Timestamp to DateTime
+    } else if (dateValue is String) {
+      try {
+        return DateFormat.yMMMd()
+            .format(DateTime.parse(dateValue)); // Parse String to DateTime
+      } catch (e) {
+        return "Invalid Date"; // Handle invalid date strings
+      }
+    } else if (dateValue is DateTime) {
+      return DateFormat.yMMMd().format(dateValue); // Use DateTime directly
+    } else {
+      return "Invalid Date"; // Handle other types
+    }
+  }
+
   final List<Color> _kDefaultRainbowColors = [
     Colors.red,
     Colors.orange,
@@ -73,7 +97,8 @@ class _EventPlannerScreenState extends State<EventPlannerScreen> {
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                            "${item.get('Location')} • ${item.get('Date')}"),
+                          "${item.get('Location')} • ${formatDate(item.get('Date'))}",
+                        ),
                         trailing: IconButton(
                           icon: const Icon(Icons.delete, color: Colors.red),
                           onPressed: () {
@@ -84,7 +109,13 @@ class _EventPlannerScreenState extends State<EventPlannerScreen> {
                                 .then((res) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("Event successful Deleted"),
+                                  content: Text(
+                                    "Event successful Deleted",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  backgroundColor: Colors.red,
                                 ),
                               );
                             }).catchError((err) {

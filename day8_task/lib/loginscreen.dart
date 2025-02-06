@@ -12,6 +12,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String name = '';
   String email = '';
   String password = '';
+  bool _isObscure = true;
   var key = GlobalKey<FormState>();
 
   login() async {
@@ -92,12 +93,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 30),
                 TextFormField(
+                  obscureText: _isObscure,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.lock),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                     label: Text("Password"),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                          _isObscure ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                    ),
                   ),
                   validator: (value) {
                     RegExp pattern = RegExp(

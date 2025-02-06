@@ -2,6 +2,7 @@ import 'package:day7_task/addeventscreen.dart';
 import 'package:day7_task/eventplannerscreen.dart';
 import 'package:day7_task/firebase_options.dart';
 import 'package:day7_task/loginscreen.dart';
+import 'package:day7_task/profilescreen.dart';
 import 'package:day7_task/registerscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "login",
+      initialRoute: "Event",
       routes: {
         "Event": (context) => EventPlannerScreen(),
         "add": (context) => AddEventScreen(),
         "register": (context) => Registerscreen(),
-        "login": (context) => LoginScreen()
+        "login": (context) => LoginScreen(),
+        "profile": (context) => ProfileScreen()
       },
     );
   }

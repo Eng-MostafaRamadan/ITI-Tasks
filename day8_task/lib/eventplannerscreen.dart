@@ -55,20 +55,28 @@ class _EventPlannerScreenState extends State<EventPlannerScreen> {
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed("add");
-              },
-              icon: Icon(Icons.add_circle_outline),
-              style: ButtonStyle(
-                iconColor: WidgetStateProperty.all(
-                  Color(0xFFF3E5F5),
-                ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("add");
+            },
+            icon: Icon(Icons.add_circle_outline),
+            style: ButtonStyle(
+              iconColor: WidgetStateProperty.all(
+                Color(0xFFF3E5F5),
               ),
             ),
-          )
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("profile");
+            },
+            icon: Icon(Icons.account_circle),
+            style: ButtonStyle(
+              iconColor: WidgetStateProperty.all(
+                Color(0xFFF3E5F5),
+              ),
+            ),
+          ),
         ],
       ),
       body: StreamBuilder<QuerySnapshot>(
